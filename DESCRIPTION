@@ -1,0 +1,14 @@
+Package: hardTaskChangepoint
+Title: Wrapper for AR1 and AR2 Changepoint Detection
+Version: 0.0.0.9000
+Authors@R: 
+    person("Arslan", "Batyrov", email = "batyrovarslan7@gmail.com", role = c("aut", "cre"))
+Description: An R package that wraps AR1 and AR2 changepoint fitting with or without trend using EnvCpt.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    EnvCpt
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
