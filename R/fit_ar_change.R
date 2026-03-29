@@ -1,3 +1,14 @@
+#' Fit AR1 or AR2 changepoint model with optional trend
+#'
+#' @param x Numeric vector.
+#' @param ar_order Either 1 or 2.
+#' @param trend Logical. If TRUE, include a time trend.
+#' @param method Changepoint method, either "PELT" or "AMOC".
+#' @param minseglen Positive minimum segment length.
+#'
+#' @return A fitted `cpt.reg` object.
+#' @export
+
 fit_ar_change <- function(x, ar_order = 1, trend = FALSE,
                           method = "PELT", minseglen = 5) {
   if (!is.numeric(x)) {
