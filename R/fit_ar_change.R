@@ -24,5 +24,57 @@ fit_ar_change <- function(x, ar_order = 1, trend = FALSE,
     stop("minseglen must be a positive number")
   }
   
-  NULL
+  n <- length(x)
+  
+  if (ar_order == 1 && n < 3) {
+    stop("x is too short for AR1 changepoint fitting")
+  }
+  
+  if (ar_order == 2 && n < 4) {
+    stop("x is too short for AR2 changepoint fitting")
+  }
+  
+  if (ar_order == 1 && !trend) {
+    design_matrix <- cbind(
+      x[-1],
+      rep(1, n - 1),
+      x[-n]
+    )
+  }
+  
+  if (ar_order == 1 && trend) {
+    design_matrix <- cbind(
+      x[-1],
+      rep(1, n - 1),
+      2:n,
+      x[-n]
+    )
+  }
+  
+  if (ar_order == 2 && !trend) {
+    design_matrix <- cbind(
+      x[-c(1, 2)],
+      rep(1, n - 2),
+      x[2:(n - 1)],
+      x[1:(n - 2)]
+    )
+  }
+  
+  if (ar_order == 2 && trend) {
+    design_matrix <- cbind(
+      x[-c(1, 2)],
+      rep(1, n - 2),
+      3:n,
+      x[2:(n - 1)],
+      x[1:(n - 2)]
+    )
+  }
+  
+  fit <- EnvCpt:::cpt.reg(
+    design_matrix,
+    method = method,
+    minseglen = minseglen
+  )
+  
+  return(fit)
 }
