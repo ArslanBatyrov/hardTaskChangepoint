@@ -13,7 +13,9 @@ jobs:
   test-coverage:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+  CODECOV_TOKEN: ${{ 5f699309-cda4-4e69-b5a3-6e8182c18efc }}
+      
 
     steps:
       - uses: actions/checkout@v4
